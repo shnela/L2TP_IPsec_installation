@@ -1,0 +1,14 @@
+---
+
+- name: Configuration of my machines
+  hosts: localhost
+  user: kushner
+  vars_files:
+    - configuration.yml
+  vars_prompt:
+    - name: "password"
+      prompt: "VPN password for {{ user }}"
+  tasks:
+    - debug: msg={{ansible_os_family}}
+  roles:
+    - { role: L2TP_IPsec, sudo: true }

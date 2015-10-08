@@ -1,0 +1,49 @@
+- name: Installing required xl2tpd
+  pacman:
+    name=xl2tpd state=present
+
+- name: Install required openswan from AUR
+  packer:
+    name=openswan state=present
+
+- name: Copy ipsec configuration and secrets 1
+  template:
+    src=ipsec.conf.j2 dest=/etc/ipsec.conf force=yes
+- name: Copy ipsec configuration and secrets 2
+  template:
+    src=ipsec.secrets.j2 dest=/etc/ipsec.secrets force=yes
+
+- name: Copy xl2tpd configuration and pppoptfile 1
+  template:
+    src=xl2tpd.conf.j2 dest=/etc/xl2tpd/xl2tpd.conf force=yes
+- name: Copy xl2tpd configuration and pppoptfile 2
+  template:
+    src=options.l2tpd.client.j2 dest=/etc/ppp/options.l2tpd.client force=yes
+
+- name: Create required directories and files 1
+  file: path=/var/run/xl2tpd state=directory owner=root group=root
+- name: Create required directories and files 2
+  file: path=/var/run/xl2tpd/l2tpd-controll state=touch owner=root group=root
+
+# - name: Stop xl2tpd
+#   shell: systemctl stop xl2tpd
+# 
+# - name: Stop openswan
+#   shell: systemctl stop openswan
+# 
+# - name: Start openswan
+#   shell: systemctl start openswan
+# 
+# - name: Start xl2tpd
+#   shell: systemctl start xl2tpd
+
+# k- name: L2TP-PSK up
+# k  shell: ipsec auto --up L2TP-PSK
+# k
+# k- shell: echo "c vpn-connection" > /var/run/xl2tpd/l2tp-control
+
+
+# - name: Create tunnel to demanded ip addresses
+#   shell: route add {{ target_ip }} via {{ }} dev {{ interface }}
+#   with: target_ips
+

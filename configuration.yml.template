@@ -1,0 +1,20 @@
+---
+
+# network card interface
+interface: 
+
+# our computer IP
+my_ip: 
+
+# VPN server IP
+vpn_ip: 
+
+# list of IP addresses to which we want connect to via VPN
+target_ips:
+  - 
+
+# vpn username
+username: 
+
+# vpn password
+password: 

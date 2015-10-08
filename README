@@ -1,0 +1,4 @@
+Installation and configuration of L2TP/IPsec VPN client setup for arch linux using ansible.
+
+Copy configuration.yml.template -> configuration.yml and set necessary variables.
+Password is received from the prompt.
