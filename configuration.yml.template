@@ -16,5 +16,4 @@ target_ips:
 # vpn username
 username: 
 
-# vpn password
-password: 
+# password is received from the prompt
